@@ -20,7 +20,7 @@ rhel9cis_authselect_custom_profile_name: terminated_si_hans
 
 # GNOME specific
 # gdm
-#rhel9cis_desktop_required: true
+rhel9cis_gui: true
 rhel9cis_set_boot_profile: "workstation"
 rhel9cis_workstation: true
 rhel9cis_xwindows_required: true
