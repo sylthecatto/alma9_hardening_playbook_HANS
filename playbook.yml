@@ -31,7 +31,7 @@
         password_lock: true
 
     - name: Force Password Expiration
-      ansible.builtin.command: chage -d 0 "{{ansible}}"
+      ansible.builtin.command: chage -d 0 "{{ansible_user}}"
       changed_when: true
 
     - name: Run Finishing Announcement
