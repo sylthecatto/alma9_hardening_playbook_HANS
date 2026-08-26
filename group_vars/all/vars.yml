@@ -1,0 +1,21 @@
+---
+# scope, level 1 only
+rhel9cis_level_1: true
+rhel9cis_level_2: false
+
+# fixed constraint, unlocks a cluster
+# of level 1 controls that are off by default
+rhel9cis_disruption_high: true
+
+# Warning Bannger
+rhel9cis_warning_banner: "AIRNAV EXAM NODE - HANS - AUTHORIZED USE ONLY"
+
+# PAM Faillock account disabled
+rhel9cis_rule_5_3_3_1_1: false
+rhel9cis_rule_5_3_3_1_2: false
+
+# enable goss audit
+setup_audit: true
+run_audit: true
+fetch_audit_output: true
+audit_output_destination: "./"

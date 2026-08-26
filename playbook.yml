@@ -1,0 +1,42 @@
+---
+- name: Ansible Practical
+  hosts: terminated-cadet
+  become: true
+
+  pre_tasks:
+    - name: AlmaLinux 9 Confirmation
+      ansible.builtin.assert:
+        that:
+          - ansible_facts['distribution'] == 'AlmaLinux'
+          - ansible_facts['distribution_major_version'] == '9'
+
+        fail_msg: "You are not running AlmaLinux 9"
+        success_msg: "Congrats, you are running AlmaLinux 9 and terminated from the AIRNAV Cadet WINGS Program"
+
+    - name: Update all packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        update_cache: true
+      when: ansible_os_family == "RedHat"
+
+    - name: Run Starting Announcement
+      ansible.builtin.debug:
+        msg: "The run has started"
+
+  post_tasks:
+    - name: Lock root account
+      ansible.builtin.user:
+        name: root
+        password_lock: true
+
+    - name: Force Password Expiration
+      ansible.builtin.command: chage -d 0 "{{ansible}}"
+      changed_when: true
+
+    - name: Run Finishing Announcement
+      ansible.builtin.debug:
+        msg: "The run has finished"
+
+  roles:
+    - role: RHEL9-CIS
