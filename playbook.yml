@@ -24,6 +24,9 @@
       ansible.builtin.debug:
         msg: "The run has started"
 
+  roles:
+    - role: RHEL9-CIS
+
   post_tasks:
     - name: Lock root account
       ansible.builtin.user:
@@ -37,6 +40,3 @@
     - name: Run Finishing Announcement
       ansible.builtin.debug:
         msg: "The run has finished"
-
-  roles:
-    - role: RHEL9-CIS
